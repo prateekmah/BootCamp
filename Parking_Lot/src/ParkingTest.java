@@ -89,6 +89,26 @@ public class ParkingTest {
 
     }
 
+    @org.junit.Test
+    public void testparkfullWithException() throws Exception
+    {
+
+
+        TestParkingLotOwner p=new TestParkingLotOwner();
+        ParkingLot parkingLot=new ParkingLot(p);
+        Car car=new Car(1000);
+        Car car1=new Car(1005);
+        Car car2=new Car(1003);
+
+
+        parkingLot.park(car);
+       parkingLot.park(car1);
+      // assertEquals(true, p.flag);
+
+        parkingLot.retrieve(1);
+        assertEquals(false, p.flag);
+
+    }
 
 
 }

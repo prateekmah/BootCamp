@@ -11,13 +11,19 @@ public class ParkingLot {
     int token=1;
 
     private Map<Integer,Car> parkingspace=new HashMap<Integer,Car>();
-    private int CAPACITY=2;
+    private int CAPACITY=3;
+    private ParkingLotOwner parkingLotOwner;
 
 public ParkingLot()
 {
 
 }
 
+
+    public ParkingLot(ParkingLotOwner p)
+    {
+parkingLotOwner=p;
+    }
     public ParkingLot(int capacity)
     {
         this.CAPACITY=capacity;
@@ -25,11 +31,13 @@ public ParkingLot()
 
     public int park(Car car)
     {
+/*
 
 if(parkingspace.size()==CAPACITY)
 {
     throw new ParkingFullException();
 }
+*/
 
         if(parkingspace.containsValue(car))
         {
@@ -37,6 +45,12 @@ if(parkingspace.size()==CAPACITY)
         }
 
         parkingspace.put(token,car);
+        if(parkingspace.size()==CAPACITY)
+        {
+parkingLotOwner.onFull();
+
+        }
+
         return token++;
     }
 
@@ -46,7 +60,10 @@ if(parkingspace.size()==CAPACITY)
         {
             throw new CarNotFoundException("car not parked");
         }
-
+if(parkingspace.size()==CAPACITY)
+{
+parkingLotOwner.spacepresent();
+}
         Car c=parkingspace.remove(token);
        return c;
 
