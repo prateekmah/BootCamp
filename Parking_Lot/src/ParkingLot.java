@@ -39,4 +39,16 @@ if(parkingspace.size()==CAPACITY)
         parkingspace.put(token,car);
         return token++;
     }
+
+    public Car retrieve(int token)
+    {
+        if(parkingspace.get(token)== null)
+        {
+            throw new CarNotFoundException("car not parked");
+        }
+
+        Car c=parkingspace.remove(token);
+       return c;
+
+    }
 }

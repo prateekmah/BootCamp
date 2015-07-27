@@ -60,4 +60,35 @@ public class ParkingTest {
 
         assertEquals(1,parkingLot.park(car));
     }
+
+
+    @org.junit.Test(expected = CarNotFoundException.class)
+    public void RetrieveCar() throws Exception {
+
+        Car car=new Car(1000);
+        Car car1=new Car(1005);
+
+        ParkingLot p=new ParkingLot();
+        int token= p.park(car);
+        int token1=p.park(car1);
+
+        assertEquals(1, token);
+        assertEquals(2, token1);
+
+
+
+       Car c=p.retrieve(3);
+
+
+
+
+
+
+
+
+
+    }
+
+
+
 }
