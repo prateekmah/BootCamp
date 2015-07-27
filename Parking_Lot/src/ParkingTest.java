@@ -32,7 +32,7 @@ public class ParkingTest {
 
 
 
-    @org.junit.Test(expected = RuntimeException.class)
+    @org.junit.Test(expected = ParkingFullException.class)
     public void testparkWithException() throws Exception
     {
 
@@ -43,5 +43,21 @@ public class ParkingTest {
         parkingLot.park(car);
         parkingLot.park(car1);
         assertEquals(3,parkingLot.park(new Car(1002)));
+    }
+
+
+    @org.junit.Test(expected = ParkingDuplicacyException.class)
+    public void testparkDuplicacy() throws Exception
+    {
+
+        Car car=new Car(1000);
+
+
+        ParkingLot parkingLot=new ParkingLot();
+
+        parkingLot.park(car);
+
+
+        assertEquals(1,parkingLot.park(car));
     }
 }

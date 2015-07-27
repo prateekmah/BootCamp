@@ -31,6 +31,11 @@ if(parkingspace.size()==CAPACITY)
     throw new ParkingFullException();
 }
 
+        if(parkingspace.containsValue(car))
+        {
+            throw new ParkingDuplicacyException();
+        }
+
         parkingspace.put(token,car);
         return token++;
     }
